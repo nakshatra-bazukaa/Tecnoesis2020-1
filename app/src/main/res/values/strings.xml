@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Tecnoesis2k20</string>
     <string name="botnav_menu_about">About</string>
-    <string name="botnav_menu_schedule">Schedule</string>
+    <string name="botnav_menu_location">Location</string>
     <string name="botnav_menu_events">Events</string>
     <string name="botnav_menu_home">Home</string>
     <string name="botnav_menu_notifications">Notifications</string>

@@ -38,6 +38,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
 
+
+
 //    butterknife : for view binding
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
@@ -71,6 +73,8 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:6.2.0'
 
     implementation 'com.victor:lib:1.0.4'
+
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
 
 

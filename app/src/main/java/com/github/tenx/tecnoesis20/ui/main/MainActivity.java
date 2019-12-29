@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 frag = new EventsFragment();
                 colorID = R.color.nav_events;
                 break;
-            case R.id.nav_schedule:
+            case R.id.nav_location:
                 frag = new ScheduleFragment();
                 colorID = R.color.nav_schedule;
                 break;

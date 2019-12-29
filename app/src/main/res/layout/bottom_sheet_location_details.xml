@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_map_bottom_sheet"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:behavior_hideable="true"
+
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_purple_700"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_bot_sheet_map"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height">
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/iv_bottom_sheet_image_loc"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        tools:src="@mipmap/ic_launcher"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_bot_sheet_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/listitem_bot_sheet_items"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>
