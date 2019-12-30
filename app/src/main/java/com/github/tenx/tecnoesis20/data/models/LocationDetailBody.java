@@ -26,7 +26,7 @@ public class LocationDetailBody {
         this.image = image;
     }
 
-    @PropertyName("events")
+    @PropertyName("HomeEventBody")
     List<MarkerEvent> events;
 
     public LocationDetailBody() {

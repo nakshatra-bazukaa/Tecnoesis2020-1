@@ -9,6 +9,6 @@ import retrofit2.Response;
 import retrofit2.http.GET;
 
 public interface EventsApiService {
-    @GET("/api/v1/events")
+    @GET("/api/v1/HomeEventBody")
     Call<ArrayList<EventResponse>> getEvents();
 }

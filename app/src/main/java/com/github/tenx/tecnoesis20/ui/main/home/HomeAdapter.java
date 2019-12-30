@@ -10,7 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.github.tenx.tecnoesis20.R;
+import com.github.tenx.tecnoesis20.data.models.HomeEventBody;
 
 
 import java.util.ArrayList;
@@ -22,11 +24,17 @@ import butterknife.ButterKnife;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ImageViewHOlder> {
 
     private Context tcontext;
-    private ArrayList<events> hlist;
+    private List<HomeEventBody> hlist;
 
-    public HomeAdapter(Context tcontext, ArrayList<events> hlist) {
+    public HomeAdapter(Context tcontext) {
         this.tcontext = tcontext;
+        this.hlist =  new ArrayList<>();
+    }
+
+
+    public void setHlist(List<HomeEventBody> hlist) {
         this.hlist = hlist;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -38,26 +46,29 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ImageViewHOlde
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHOlder holder, final int position) {
-        holder.textView.setText(hlist.get(position).getEventsNames());
-        holder.textView2.setText(hlist.get(position).getDescription());
-        holder.imageView.setImageResource(hlist.get(position).getImages());
+        HomeEventBody currentData = hlist.get(position);
+
+        holder.tvName.setText(currentData.getName());
+        holder.tvDescription.setText(currentData.getDescription());
+        Glide.with(tcontext).load(currentData.getImage()).placeholder(R.drawable.placeholder_image).into(holder.ivImage);
 
     }
 
     @Override
     public int getItemCount()
     {
-        return hlist.size();
+        return hlist == null ? 0 : hlist.size();
     }
 
     public  class ImageViewHOlder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.iv_home_event_image)
-        ImageView imageView;
+        ImageView ivImage;
+
         @BindView(R.id.tv_home_module_title)
-        TextView textView;
+        TextView tvName;
         @BindView(R.id.tv_home_description)
-        TextView textView2;
+        TextView tvDescription;
 
         public ImageViewHOlder(@NonNull View itemView) {
             super(itemView);

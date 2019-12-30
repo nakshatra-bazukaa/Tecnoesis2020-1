@@ -18,7 +18,7 @@ public class ModuleBody {
     @PropertyName("image")
     String image;
 
-    @PropertyName("events")
+    @PropertyName("HomeEventBody")
     List<EventBody> events;
 
 

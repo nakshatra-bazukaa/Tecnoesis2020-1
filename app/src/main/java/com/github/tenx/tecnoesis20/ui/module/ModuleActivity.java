@@ -35,7 +35,7 @@ public class ModuleActivity extends AppCompatActivity implements EventClickHandl
 
     public static final String CURRENT_MODULE_KEY = "module_key_1";
     public static final String CURRENT_EVENT_KEY = "event_key_1";
-    public static final String START_EVENTS = "events";
+    public static final String START_EVENTS = "HomeEventBody";
 
 
     @BindView(R.id.module_tablayout)

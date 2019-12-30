@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.github.tenx.tecnoesis20.data.models.HomeEventBody;
 import com.github.tenx.tecnoesis20.data.models.LocationDetailBody;
 import com.github.tenx.tecnoesis20.data.models.ModuleBody;
 import com.github.tenx.tecnoesis20.ui.MyApplication;
@@ -28,11 +29,14 @@ public class MainViewModel  extends AndroidViewModel {
     private MutableLiveData<List<ModuleBody>> ldModulesList;
 
     private MutableLiveData<List<LocationDetailBody>> ldLocationDetailsList;
-    private MutableLiveData<Boolean> isLocationsLoaded;
-
     private MutableLiveData<Boolean> isModulesLoaded;
     private MyApplication app;
     private FirebaseDatabase db;
+    private MutableLiveData<List<String>> ldSponsorImageList;
+    private MutableLiveData<List<String>> ldPagerImageList;
+    private MutableLiveData<List<HomeEventBody>> ldMainEventList;
+    private MutableLiveData<Boolean> isMainContentLoaded;
+
 
 
     public MainViewModel(@NonNull Application application)
@@ -43,7 +47,11 @@ public class MainViewModel  extends AndroidViewModel {
         ldModulesList = new MutableLiveData<>();
         isModulesLoaded = new MutableLiveData<>();
         ldLocationDetailsList = new MutableLiveData<>();
-        isLocationsLoaded = new MutableLiveData<>();
+        ldSponsorImageList = new MutableLiveData<>();
+        ldPagerImageList = new MutableLiveData<>();
+        ldMainEventList = new MutableLiveData<>();
+        isMainContentLoaded = new MutableLiveData<>();
+
     }
 
 
@@ -56,8 +64,20 @@ public class MainViewModel  extends AndroidViewModel {
         return ldLocationDetailsList;
     }
 
-    public LiveData<Boolean> getIsLocationsLoaded() {
-        return isLocationsLoaded;
+    public MutableLiveData<List<String>> getLdSponsorImageList() {
+        return ldSponsorImageList;
+    }
+
+    public MutableLiveData<List<String>> getLdPagerImageList() {
+        return ldPagerImageList;
+    }
+
+    public MutableLiveData<List<HomeEventBody>> getLdMainEventList() {
+        return ldMainEventList;
+    }
+
+    public MutableLiveData<Boolean> getIsMainContentLoaded() {
+        return isMainContentLoaded;
     }
 
     public MutableLiveData<Boolean> getIsModulesLoaded() {
@@ -78,7 +98,7 @@ public class MainViewModel  extends AndroidViewModel {
                         DataSnapshot snap = iterator.next();
 
                         ModuleBody data = snap.getValue(ModuleBody.class);
-                        Timber.d("events : "+data.getEvents().size());
+                        Timber.d("HomeEventBody : "+data.getEvents().size());
 
 
                         temp.add(data);
@@ -106,7 +126,6 @@ public class MainViewModel  extends AndroidViewModel {
     }
 
     public void loadLocationDetails(){
-        isLocationsLoaded.postValue(false);
         db.getReference().child("locations").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -129,7 +148,95 @@ public class MainViewModel  extends AndroidViewModel {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                isLocationsLoaded.postValue(true);
+
+            }
+        });
+    }
+
+
+    public void loadSponsors(){
+        db.getReference().child("sponsors").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
+                List<String> temp = new ArrayList<>();
+                while (iterator.hasNext()){
+
+                    DataSnapshot snap = iterator.next();
+
+                    String data = snap.getValue(String.class);
+                    temp.add(data);
+                }
+
+//                    post update to activity
+                ldSponsorImageList.postValue(temp);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void loadPagerImages(){
+        db.getReference().child("pager").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
+                List<String> temp = new ArrayList<>();
+                while (iterator.hasNext()){
+
+                    DataSnapshot snap = iterator.next();
+
+                    String data = snap.getValue(String.class);
+                    temp.add(data);
+                }
+
+//                    post update to activity
+                ldPagerImageList.postValue(temp);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+
+    public void loadMainEvents(){
+        isMainContentLoaded.postValue(false);
+        db.getReference().child("main").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                isMainContentLoaded.postValue(true);
+                Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
+                List<HomeEventBody> temp = new ArrayList<>();
+                while (iterator.hasNext()){
+
+                    DataSnapshot snap = iterator.next();
+
+                    HomeEventBody data = snap.getValue(HomeEventBody.class);
+                    temp.add(data);
+                }
+
+//                    post update to activity
+                ldMainEventList.postValue(temp);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                isMainContentLoaded.postValue(true);
             }
         });
     }

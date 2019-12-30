@@ -46,13 +46,13 @@ public class HomeViewModel  extends AndroidViewModel implements HomeViewModelHel
                 if(response.code() < 300){
                     eventsList.setValue(response.body());
                 }else{
-                    Timber.e("Response code : %d , Error fetching events" , response.code());
+                    Timber.e("Response code : %d , Error fetching HomeEventBody" , response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<EventResponse>> call, Throwable t) {
-                Timber.e("Error fetching events , %s" ,t.getMessage() );
+                Timber.e("Error fetching HomeEventBody , %s" ,t.getMessage() );
             }
         });
     }

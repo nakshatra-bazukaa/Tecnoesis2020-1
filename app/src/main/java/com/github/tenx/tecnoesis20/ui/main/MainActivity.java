@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
 
 
-//        if coming back from module activity load events fragment first
+//        if coming back from module activity load HomeEventBody fragment first
         if(getIntent().getBooleanExtra(ModuleActivity.START_EVENTS, false)){
             initFragment(new EventsFragment());
             botNav.setSelectedItemId(R.id.nav_events);
@@ -158,6 +158,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private void initModulesData(){
         viewModel.loadModules();
         viewModel.loadLocationDetails();
+        viewModel.loadMainEvents();
+        viewModel.loadSponsors();
+        viewModel.loadPagerImages();
     }
 
     public MainViewModel getViewModel() {

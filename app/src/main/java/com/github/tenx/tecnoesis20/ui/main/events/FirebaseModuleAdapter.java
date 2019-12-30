@@ -1,4 +1,4 @@
-//package com.github.tenx.tecnoesis20.ui.main.events;
+//package com.github.tenx.tecnoesis20.ui.main.HomeEventBody;
 //
 //import android.content.Context;
 //import android.content.Intent;
