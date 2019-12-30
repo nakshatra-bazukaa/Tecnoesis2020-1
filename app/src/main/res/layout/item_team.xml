@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/item_team_civ_memberImage"
+        android:id="@+id/item_team_civ_itemImage"
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:src="@drawable/goku"
@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
     <TextView
-        android:id="@+id/item_team_tv_memberName"
+        android:id="@+id/item_team_tv_itemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Name"
@@ -24,9 +24,9 @@
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_team_civ_memberImage"/>
+        app:layout_constraintTop_toBottomOf="@id/item_team_civ_itemImage"/>
     <TextView
-        android:id="@+id/item_team_tv_memberDesignation"
+        android:id="@+id/item_team_tv_itemDesignation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Designation"
@@ -34,7 +34,7 @@
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_team_tv_memberName"
+        app:layout_constraintTop_toBottomOf="@id/item_team_tv_itemName"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
