@@ -48,7 +48,6 @@ public class TeamItemAdapter extends RecyclerView.Adapter<TeamItemAdapter.TeamIt
                 .into(holder.itemImageView);
         holder.itemName.setText(mItemName.get(position));
         holder.itemDesignation.setText(mItemDesignation.get(position));
-
     }
 
     @Override

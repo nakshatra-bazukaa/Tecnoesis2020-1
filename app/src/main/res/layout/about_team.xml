@@ -23,14 +23,14 @@
             android:textColor="#000000"/>
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/team_about_rl_memberRecyclerView"
+        android:id="@+id/team_about_rl_itemRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/team_about_rl_header">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/team_about_rv_teamMembers"
+            android:id="@+id/team_about_rv_teamItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_team"
