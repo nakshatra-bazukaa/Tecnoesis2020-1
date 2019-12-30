@@ -5,7 +5,8 @@
     android:id="@+id/team_about_cl_container"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    tools:context=".ui.main.about.teams.TeamsFragment">
     <RelativeLayout
         android:id="@+id/team_about_rl_header"
         android:layout_width="match_parent"

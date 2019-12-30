@@ -34,9 +34,7 @@ public class TeamItemAdapter extends RecyclerView.Adapter<TeamItemAdapter.TeamIt
     @NonNull
     @Override
     public TeamItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_team,parent,false);
-        TeamItemViewHolder holder = new TeamItemViewHolder(view);
-        return holder;
+        return new TeamItemViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_team,parent,false));
     }
 
     @Override
@@ -66,7 +64,7 @@ public class TeamItemAdapter extends RecyclerView.Adapter<TeamItemAdapter.TeamIt
 
             itemImageView = itemView.findViewById(R.id.item_team_civ_itemImage);
             itemName = itemView.findViewById(R.id.item_team_tv_itemName);
-            itemDesignation = itemName.findViewById(R.id.item_team_tv_itemDesignation);
+            itemDesignation = itemView.findViewById(R.id.item_team_tv_itemDesignation);
         }
     }
 }

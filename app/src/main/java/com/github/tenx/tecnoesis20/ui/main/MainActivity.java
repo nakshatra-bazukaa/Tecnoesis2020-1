@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.github.tenx.tecnoesis20.R;
 import com.github.tenx.tecnoesis20.ui.main.about.AboutFragment;
+import com.github.tenx.tecnoesis20.ui.main.about.teams.TeamsFragment;
 import com.github.tenx.tecnoesis20.ui.main.events.EventsFragment;
 import com.github.tenx.tecnoesis20.ui.main.home.HomeFragment;
 import com.github.tenx.tecnoesis20.ui.main.notifications.NotificationsFragment;
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 colorID = R.color.nav_schedule;
                 break;
             case R.id.nav_about:
-                frag = new AboutFragment();
+                frag = new TeamsFragment();
                 colorID = R.color.nav_about;
                 break;
                 case R.id.nav_notifications:

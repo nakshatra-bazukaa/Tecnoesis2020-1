@@ -23,6 +23,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     private ArrayList<ArrayList<String>> mTeamItemName = new ArrayList<>();
     private ArrayList<ArrayList<String>> mTeamItemDesignation = new ArrayList<>();
     private Context mContext;
+    private TeamItemAdapter gridAdapter;
 
     public TeamAdapter(Context mContext, ArrayList<String> mTeamHeader, ArrayList<ArrayList<String>> mTeamItemImageUrl, ArrayList<ArrayList<String>> mTeamItemName, ArrayList<ArrayList<String>> mTeamItemDesignation) {
         this.mTeamHeader = mTeamHeader;
@@ -30,14 +31,14 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         this.mTeamItemName = mTeamItemName;
         this.mTeamItemDesignation = mTeamItemDesignation;
         this.mContext = mContext;
+
     }
 
     @NonNull
     @Override
     public TeamViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.about_team,parent,false);
-        TeamViewHolder holder = new TeamViewHolder(view);
-        return holder;
+        return new TeamViewHolder(view);
     }
 
     @Override
@@ -45,9 +46,10 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
         holder.teamHeader.setText(mTeamHeader.get(position));
 
-        TeamItemAdapter adapter = new TeamItemAdapter(mContext, mTeamItemImageUrl.get(position), mTeamItemName.get(position), mTeamItemDesignation.get(position));
-        holder.itemRecyclerView.setAdapter(adapter);
+        gridAdapter = new TeamItemAdapter(mContext, mTeamItemImageUrl.get(position), mTeamItemName.get(position), mTeamItemDesignation.get(position));
         holder.itemRecyclerView.setLayoutManager(new GridLayoutManager(mContext,2));
+        holder.itemRecyclerView.setAdapter(gridAdapter);
+
     }
 
     @Override
@@ -57,13 +59,15 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
     public class TeamViewHolder extends RecyclerView.ViewHolder{
 
-        TextView teamHeader;
-        RecyclerView itemRecyclerView;
+        private TextView teamHeader;
+        private RecyclerView itemRecyclerView;
+
 
         public TeamViewHolder(@NonNull View itemView) {
             super(itemView);
 
             teamHeader = itemView.findViewById(R.id.team_about_tv_header);
+
             itemRecyclerView = itemView.findViewById(R.id.team_about_rv_teamItems);
         }
     }
