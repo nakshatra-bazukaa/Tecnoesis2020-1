@@ -61,7 +61,6 @@ public class HomeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View parent = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, parent);
-
         initModuleRecycler();
         initSlider();
         initSponsorsRecycler();
@@ -114,11 +113,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void initModuleRecycler() {
-//        events=new ArrayList<>();
-//        events.add(new HomeEventBody("MODULES","Tecnoesis 2020 presents before you an amazing and alluring blende of HomeEventBody and modules. Dive straight into the world of techies and ignite the innovative genius within you. Particapate in workshops to discover exciting new topics.",R.drawable.digital));
-//        events.add(new HomeEventBody("NITS HACKS 3.0","It is all about providing the fanatics with the flavour of the emerging technical aspects of many real life applications. With the idea of binding pack of celebrated minds into the same platform, the team will be conducting Hackatons and coding competitions to bring out the best in the tech geeks!",R.drawable.digital));
-//        events.add(new HomeEventBody("SPARK","The coup de grace event of the annual techno-management festivals. Culminating the end of festivities in form of a musical extravaganza, Spark is the spectacle to behold. From edm artists to classical artists, from rock bands to solo singers,the Spark night truly covers the art of production and provides the drive to feature the elite artists of the present generation.",R.drawable.digital));
-//
         layoutManager = new LinearLayoutManager(getActivity());
         mainEventsRecycler.setHasFixedSize(true);
         mainEventsRecycler.setLayoutManager(layoutManager);

@@ -26,9 +26,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="170dp"
-        android:background="@color/md_grey_50"
+        android:background="@color/bg_card_25_opac_black"
         android:layout_marginStart="@dimen/margin_padding_size_large"
         android:layout_marginEnd="@dimen/margin_padding_size_large"
+
 
         >
         <TextView
@@ -37,9 +38,10 @@
             android:layout_height="wrap_content"
             tools:text="@tools:sample/lorem"
             android:layout_marginStart="@dimen/margin_padding_size_small"
-            android:textColor="@color/md_black_1000"
+            android:textColor="@color/md_grey_50"
             android:fontFamily="@font/lora_bold"
             android:textSize="@dimen/text_size_xlarge"
+
             />
         <TextView
 
@@ -50,6 +52,7 @@
             android:fontFamily="@font/lora_regular"
             android:padding="@dimen/margin_padding_size_medium"
             android:textSize="@dimen/text_size_medium"
+            android:textColor="@color/md_grey_100"
             />
 
 

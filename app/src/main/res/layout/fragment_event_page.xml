@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/bg_card_50_opac_black"
+    android:paddingBottom="@dimen/margin_padding_size_medium"
+    >
     <RelativeLayout
         android:id="@+id/rl1"
 
@@ -27,11 +30,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="170dp"
-            android:background="@color/md_grey_50"
+            android:background="@color/bg_card_25_opac_black"
             android:paddingStart="@dimen/margin_padding_size_medium"
             android:paddingEnd="@dimen/margin_padding_size_medium"
             android:layout_marginStart="@dimen/margin_padding_size_large"
             android:layout_marginEnd="@dimen/margin_padding_size_large"
+
 
             >
             <TextView
@@ -40,7 +44,7 @@
                 android:layout_height="wrap_content"
                 tools:text="@tools:sample/lorem"
                 android:layout_marginStart="@dimen/margin_padding_size_small"
-                android:textColor="@color/md_black_1000"
+                android:textColor="@color/md_grey_100"
                 android:fontFamily="@font/lora_bold"
                 android:textSize="@dimen/text_size_xlarge"
                 />
@@ -50,6 +54,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="12 oct"
+                android:textColor="@color/md_grey_200"
+
                 android:layout_marginStart="@dimen/margin_padding_size_small"
                 android:textAllCaps="true"
                 android:textSize="@dimen/text_size_small"
@@ -72,6 +78,7 @@
                 android:fontFamily="@font/lora_regular"
                 android:padding="@dimen/margin_padding_size_medium"
                 android:textSize="@dimen/text_size_medium"
+                android:textColor="@color/md_grey_100"
                 />
 
 
@@ -80,9 +87,10 @@
                 android:layout_height="wrap_content"
                 android:text="Rules :"
                 android:fontFamily="@font/lora_bold"
-                android:textColor="@color/md_black_1000"
+                android:textColor="@color/md_grey_50"
                 android:layout_marginStart="@dimen/margin_padding_size_small"
                 android:textSize="@dimen/text_size_large"
+
                 />
 
             <TextView
@@ -93,6 +101,7 @@
                 android:fontFamily="@font/lora_regular"
                 android:padding="@dimen/margin_padding_size_medium"
                 android:textSize="@dimen/text_size_medium"
+                android:textColor="@color/md_grey_100"
                 />
 
 
@@ -100,4 +109,4 @@
 
         </LinearLayout>
     </RelativeLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

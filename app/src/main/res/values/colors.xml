@@ -9,7 +9,7 @@
     <color name="nav_events">#AB47BC</color>
     <color name="nav_schedule">#0277bd</color>
     <color name="nav_about">#EF5350</color>
-    <color name="nav_notifications">#004D40</color>
+    <color name="nav_notifications">#EC407A</color>
 
 
 
@@ -313,7 +313,8 @@
     <!--home frag-->
     <color name="nav_home_analogous">#2745a0</color>
     <color name="mdc_text_home">#ffffff</color>
-
+    <color name="bg_card_50_opac_black">#80000000</color>
+    <color name="bg_card_25_opac_black">#40000000</color>
 
 
 </resources>
