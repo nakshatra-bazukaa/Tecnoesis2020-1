@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private void initModulesData(){
         viewModel.loadModules();
+        viewModel.loadLocationDetails();
     }
 
     public MainViewModel getViewModel() {

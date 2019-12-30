@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.tenx.tecnoesis20.R;
-import com.github.tenx.tecnoesis20.data.models.MarkerDetailBody;
+import com.github.tenx.tecnoesis20.data.models.LocationDetailBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 
 public class BottomSheetRecyclerAdapter extends RecyclerView.Adapter<BottomSheetRecyclerAdapter.CustomViewHolder> {
 
-    private List<MarkerDetailBody.MarkerEvent> eventList;
+    private List<LocationDetailBody.MarkerEvent> eventList;
 
     public BottomSheetRecyclerAdapter() {
         this.eventList = new ArrayList<>();
@@ -35,7 +35,7 @@ public class BottomSheetRecyclerAdapter extends RecyclerView.Adapter<BottomSheet
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        MarkerDetailBody.MarkerEvent currentData = eventList.get(position);
+        LocationDetailBody.MarkerEvent currentData = eventList.get(position);
             holder.tvBotSheetEventDate.setText(currentData.getDate());
             holder.tvBotSheetEventName.setText(currentData.getName());
     }
@@ -60,7 +60,7 @@ public class BottomSheetRecyclerAdapter extends RecyclerView.Adapter<BottomSheet
         }
     }
 
-    public void setEventList(List<MarkerDetailBody.MarkerEvent> eventList) {
+    public void setEventList(List<LocationDetailBody.MarkerEvent> eventList) {
         this.eventList = eventList;
         notifyDataSetChanged();
     }

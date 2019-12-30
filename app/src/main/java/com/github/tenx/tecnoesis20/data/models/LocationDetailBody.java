@@ -4,7 +4,7 @@ import com.google.firebase.database.PropertyName;
 
 import java.util.List;
 
-public class MarkerDetailBody {
+public class LocationDetailBody {
 
     @PropertyName("lat")
     String lat;
@@ -15,20 +15,30 @@ public class MarkerDetailBody {
     @PropertyName("name")
     String name;
 
+    @PropertyName("image")
+    String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     @PropertyName("events")
     List<MarkerEvent> events;
 
-    public MarkerDetailBody() {
+    public LocationDetailBody() {
     }
 
-    public MarkerDetailBody(String lat, String lng, String name) {
+    public LocationDetailBody(String lat, String lng, String name) {
         this.lat = lat;
         this.lng = lng;
         this.name = name;
     }
 
-    public MarkerDetailBody(String lat, String lng, String name, List<MarkerEvent> events) {
+    public LocationDetailBody(String lat, String lng, String name, List<MarkerEvent> events) {
         this.lat = lat;
         this.lng = lng;
         this.name = name;

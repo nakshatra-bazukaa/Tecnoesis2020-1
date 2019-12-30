@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.github.tenx.tecnoesis20.data.models.LocationDetailBody;
 import com.github.tenx.tecnoesis20.data.models.ModuleBody;
 import com.github.tenx.tecnoesis20.ui.MyApplication;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +26,10 @@ public class MainViewModel  extends AndroidViewModel {
 
 
     private MutableLiveData<List<ModuleBody>> ldModulesList;
+
+    private MutableLiveData<List<LocationDetailBody>> ldLocationDetailsList;
+    private MutableLiveData<Boolean> isLocationsLoaded;
+
     private MutableLiveData<Boolean> isModulesLoaded;
     private MyApplication app;
     private FirebaseDatabase db;
@@ -37,12 +42,22 @@ public class MainViewModel  extends AndroidViewModel {
         db = FirebaseDatabase.getInstance();
         ldModulesList = new MutableLiveData<>();
         isModulesLoaded = new MutableLiveData<>();
+        ldLocationDetailsList = new MutableLiveData<>();
+        isLocationsLoaded = new MutableLiveData<>();
     }
 
 
 
     public LiveData<List<ModuleBody>> getModules(){
         return ldModulesList;
+    }
+
+    public LiveData<List<LocationDetailBody>> getLdLocationDetailsList() {
+        return ldLocationDetailsList;
+    }
+
+    public LiveData<Boolean> getIsLocationsLoaded() {
+        return isLocationsLoaded;
     }
 
     public MutableLiveData<Boolean> getIsModulesLoaded() {
@@ -88,6 +103,35 @@ public class MainViewModel  extends AndroidViewModel {
                         isModulesLoaded.postValue(true);
                 }
             });
+    }
+
+    public void loadLocationDetails(){
+        isLocationsLoaded.postValue(false);
+        db.getReference().child("locations").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                isModulesLoaded.postValue(true);
+                Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
+                List<LocationDetailBody> temp = new ArrayList<>();
+                while (iterator.hasNext()){
+
+                    DataSnapshot snap = iterator.next();
+
+                    LocationDetailBody data = snap.getValue(LocationDetailBody.class);
+                    temp.add(data);
+                }
+
+//                    post update to activity
+                ldLocationDetailsList.postValue(temp);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                isLocationsLoaded.postValue(true);
+            }
+        });
     }
 
 

@@ -41,6 +41,7 @@ public class SplashActivity extends AppCompatActivity {
                     Intent i = new Intent(SplashActivity.this, MainActivity.class);
                     hideProgress();
                     startActivity(i);
+                    finish();
                 }
             }, 1500);
         });

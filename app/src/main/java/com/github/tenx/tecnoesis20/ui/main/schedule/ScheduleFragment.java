@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.github.tenx.tecnoesis20.R;
-import com.github.tenx.tecnoesis20.data.models.MarkerDetailBody;
+import com.github.tenx.tecnoesis20.data.models.LocationDetailBody;
+import com.github.tenx.tecnoesis20.ui.main.MainActivity;
+import com.github.tenx.tecnoesis20.ui.main.MainViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -36,7 +39,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
@@ -50,13 +52,14 @@ public class ScheduleFragment extends Fragment implements OnMapReadyCallback {
     private ImageView ivBottomSheetImage;
 
     private ScheduleViewModel mViewModel;
+    private MainViewModel parentViewModel;
+
 
 
     private BottomSheetRecyclerAdapter adapter;
 
-    private List<MarkerDetailBody> markerDetails;
-
     private HashMap<String , Integer> markerRecord;
+    private HashMap<String , Marker> markerIdRecord;
 
     private GoogleMap map;
     private BottomSheetDialog dialog;
@@ -73,6 +76,7 @@ public class ScheduleFragment extends Fragment implements OnMapReadyCallback {
 
         ButterKnife.bind(this, v);
 
+
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -86,24 +90,29 @@ public class ScheduleFragment extends Fragment implements OnMapReadyCallback {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(ScheduleViewModel.class);
         // TODO: Use the ViewModel
-        markerDetails = mViewModel.getMarkerDetails();
+        parentViewModel = ((MainActivity) getActivity()).getViewModel();
+
+
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
         markerRecord = new HashMap<>();
+        markerIdRecord = new HashMap<>();
         initMap(googleMap);
-
         initBottomSheet(getActivity());
-
-
-
+        parentViewModel.getLdLocationDetailsList().observe(getActivity(), data -> {
+            if(map != null){
+                initMapData(data);
+            }
+        });
     }
 
     private void initMap(GoogleMap map) {
 
         try {
+            this.map = map;
             // Customise the styling of the base map using a JSON object defined
             // in a raw resource file.
             boolean success = map.setMapStyle(
@@ -116,36 +125,28 @@ public class ScheduleFragment extends Fragment implements OnMapReadyCallback {
         } catch (Resources.NotFoundException e) {
             Timber.e("Can't find style. Error:");
         }
-
         LatLng nitCords = new LatLng(24.7577, 92.7923);
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(nitCords, 15.0f));
+    }
 
-        MarkerOptions marker = new MarkerOptions().position(nitCords).title("NIT Silchar");
-        marker.icon(getBitmap(R.drawable.ic_marker_purple));
-        markerRecord.put( map.addMarker(marker).getId(), -1);
-
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(nitCords, 17.0f));
-
-        for (int i=0 ; i< markerDetails.size() ; i++) {
-            MarkerDetailBody data = markerDetails.get(i);
+    private void initMapData(List<LocationDetailBody> locationData){
+        map.clear();
+        markerIdRecord.clear();
+        markerRecord.clear();
+        for (int i=0 ; i< locationData.size() ; i++) {
+            LocationDetailBody data = locationData.get(i);
             LatLng cords = new LatLng(Double.parseDouble(data.getLat()), Double.parseDouble(data.getLng()));
 
             MarkerOptions opts = new MarkerOptions().position(cords).title(data.getName());
             opts.icon(getBitmap(R.drawable.ic_marker_purple));
             Marker tempMarker = map.addMarker(opts);
             markerRecord.put(tempMarker.getId(), i);
-
+            markerIdRecord.put(tempMarker.getId(), tempMarker);
         }
 
         map.setOnMarkerClickListener(marker1 -> {
             try {
-
-                if(markerRecord.get(marker1.getId()) == -1){
-//                if main NIT Silchar marker dont show anything for now
-                    initBottomSheetData(new MarkerDetailBody("", "", "NIT Silchar") , getActivity());
-                    return true;
-                }
-
-                initBottomSheetData(markerDetails.get(markerRecord.get(marker1.getId())) , getActivity());
+                initBottomSheetData(locationData.get(markerRecord.get(marker1.getId())) , getActivity());
                 return true;
             }catch (NullPointerException e){
                 Timber.e("Null error occured");
@@ -180,10 +181,13 @@ public class ScheduleFragment extends Fragment implements OnMapReadyCallback {
         adapter = new BottomSheetRecyclerAdapter();
     }
 
-    private void initBottomSheetData(MarkerDetailBody data, Context context) {
+    private void initBottomSheetData(LocationDetailBody data, Context context) {
         toolbarBotSheetMap.setTitle(data.getName());
         adapter.setEventList(data.getEvents());
-        Glide.with(context).load("https://picsum.photos/300").into(ivBottomSheetImage);
+        if(data.getImage().equals("") || data.getImage() == null)
+             Glide.with(context).load("https://via.placeholder.com/400x300?text=Location+Image").placeholder(R.drawable.placeholder_image).into(ivBottomSheetImage);
+        else
+            Glide.with(context).load(data.getImage()).placeholder(R.drawable.placeholder_image).into(ivBottomSheetImage);
 
         recyclerBotSheetMap.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerBotSheetMap.setAdapter(adapter);
