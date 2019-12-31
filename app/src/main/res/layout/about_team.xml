@@ -1,41 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="@dimen/margin_padding_size_small"
+    android:paddingBottom="@dimen/margin_padding_size_medium"
+    app:cardBackgroundColor="@color/bg_card_50_opac_black">
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/team_about_cl_container"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
+    android:orientation="vertical"
     tools:context=".ui.main.about.teams.TeamsFragment">
+
     <RelativeLayout
         android:id="@+id/team_about_rl_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <TextView
             android:id="@+id/team_about_tv_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Header"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
-            android:textColor="#000000"/>
+            android:textColor="@color/md_grey_100"
+            android:textStyle="bold" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/team_about_rl_itemRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/team_about_rl_header">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/team_about_rv_teamItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_team"
-            ></androidx.recyclerview.widget.RecyclerView>
+            tools:listitem="@layout/item_team"></androidx.recyclerview.widget.RecyclerView>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
