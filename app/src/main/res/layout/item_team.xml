@@ -3,42 +3,62 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="8dp"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <View
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:background="@color/md_grey_100" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_team_civ_itemImage"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center|top"
+            android:src="@drawable/goku"
+            app:civ_border_color="@color/md_grey_100"
+            app:civ_border_width="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/item_team_tv_itemName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="@color/md_grey_100"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_team_civ_itemImage"/>
+        <TextView
+            android:id="@+id/item_team_tv_itemDesignation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Designation"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:gravity="center"
+            android:textColor="@color/md_grey_100"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_team_tv_itemName"
+            />
+        <View
+            android:layout_marginTop="4dp"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/md_grey_100" />
+    </LinearLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/item_team_civ_itemImage"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:src="@drawable/goku"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:civ_border_width="2dp"
-        app:civ_border_color="@color/md_grey_100"/>
-    <TextView
-        android:id="@+id/item_team_tv_itemName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:textColor="@color/md_grey_100"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_team_civ_itemImage"/>
-    <TextView
-        android:id="@+id/item_team_tv_itemDesignation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Designation"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:gravity="center"
-        android:textColor="@color/md_grey_100"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_team_tv_itemName"
-        />
+</LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
