@@ -14,7 +14,9 @@
         android:src="@drawable/goku"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/md_grey_100"/>
     <TextView
         android:id="@+id/item_team_tv_itemName"
         android:layout_width="match_parent"

@@ -6,6 +6,8 @@
     android:background="@drawable/sky"
     tools:context=".ui.main.about.teams.TeamsFragment">
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/frag_teams_rv_team"
         android:layout_width="match_parent"
